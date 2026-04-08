@@ -1,5 +1,7 @@
 # DupeDB-API
 
+[![](https://jitpack.io/v/Aurickk/dupedb-api.svg)](https://jitpack.io/#Aurickk/dupedb-api)
+
 Java library for the DupeDB Minecraft exploit database API. 
 
 ## Requirements
