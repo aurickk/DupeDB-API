@@ -24,7 +24,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 /** Internal HTTP client wrapper. Handles auth headers, JSON (de)serialization, and error mapping. */
-public class HttpExecutor {
+public class HttpExecutor implements AutoCloseable {
     private final String baseUrl;
     private final Supplier<String> tokenSupplier;
     private final HttpClient httpClient;
@@ -42,6 +42,12 @@ public class HttpExecutor {
             .version(HttpClient.Version.HTTP_2)
             .connectTimeout(Duration.ofSeconds(30))
             .build();
+    }
+
+    /** Closes the underlying HTTP client, releasing any pooled connections. */
+    @Override
+    public void close() {
+        httpClient.close();
     }
 
     /**

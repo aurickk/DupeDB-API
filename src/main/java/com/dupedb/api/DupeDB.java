@@ -57,6 +57,10 @@ public final class DupeDB {
             if (baseUrl == null || baseUrl.isBlank()) {
                 throw new IllegalStateException("baseUrl is required");
             }
+            if (token != null && oauthAppId != null) {
+                throw new IllegalStateException(
+                    "Cannot use both .token() and .oauth() -- choose one auth mode");
+            }
 
             AuthManager authManager = null;
 

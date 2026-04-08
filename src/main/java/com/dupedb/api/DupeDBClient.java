@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  * Main client for the DupeDB API. Construct via {@link DupeDB#client()}.
  * OAuth tokens are resolved lazily per-request, not at build time.
  */
-public class DupeDBClient {
+public class DupeDBClient implements AutoCloseable {
     private final String baseUrl;
     private final AuthManager authManager; // nullable for unauthenticated
     private final HttpExecutor http;
@@ -102,5 +102,11 @@ public class DupeDBClient {
         if (authManager != null) {
             authManager.clearToken();
         }
+    }
+
+    /** Closes the underlying HTTP client, releasing pooled connections. */
+    @Override
+    public void close() {
+        http.close();
     }
 }
