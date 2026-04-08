@@ -1,0 +1,40 @@
+plugins {
+    `java-library`
+    `maven-publish`
+}
+
+group = "com.dupedb"
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api("com.google.code.gson:gson:2.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.dupedb"
+            artifactId = "dupedb-api"
+            from(components["java"])
+        }
+    }
+}
