@@ -55,7 +55,7 @@ To use authenticated endpoints, you need a registered OAuth app. Open a ticket i
 | **Redirect URIs** | Callback URLs (exact match, one per environment) | `http://localhost:9876/callback` |
 | **Read-Only** | Whether the app only needs read access | `false` |
 
-The app ID cannot be changed after creation. See the full [Developer Documentation](https://dupedb.net/developers) for details on the OAuth flow, permissions, and token handling.
+The app ID cannot be changed after creation. See the full [Developer Documentation](https://dupedb.net/resource/developer-documentation) for details on the OAuth flow, permissions, and token handling.
 
 ## Usage
 
