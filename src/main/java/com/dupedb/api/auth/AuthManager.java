@@ -28,8 +28,8 @@ public class AuthManager {
         this.currentToken = token;
     }
 
-    /** Gets a valid token, resolving from memory -> disk -> OAuth flow. */
-    public String getToken() throws DupeDBException {
+    /** Gets a valid token, resolving from memory -> disk -> OAuth flow. Thread-safe. */
+    public synchronized String getToken() throws DupeDBException {
         if (currentToken != null) {
             return currentToken;
         }
@@ -64,16 +64,16 @@ public class AuthManager {
             + "Use .token() for a pre-configured token or .oauth() for browser flow.");
     }
 
-    /** Clears the token from memory and disk. */
-    public void clearToken() {
+    /** Clears the token from memory and disk. Thread-safe. */
+    public synchronized void clearToken() {
         currentToken = null;
         if (tokenStore != null) {
             tokenStore.delete();
         }
     }
 
-    /** Returns whether a token is available without triggering auth. */
-    public boolean hasToken() {
+    /** Returns whether a token is available without triggering auth. Thread-safe. */
+    public synchronized boolean hasToken() {
         if (currentToken != null) return true;
         if (tokenStore != null) {
             Credentials stored = tokenStore.load();
