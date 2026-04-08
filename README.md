@@ -42,6 +42,19 @@ dependencies {
 }
 ```
 
+## OAuth App Registration
+
+To use authenticated endpoints, you need a registered OAuth app. Open a ticket in the [DupeDB Discord](https://discord.com/invite/J5fQrKVxrC) and provide:
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **App ID** | Unique slug (`3-32` lowercase alphanumeric + dashes) | `my-fabric-mod` |
+| **App Name** | Shown to users on the consent screen (max 100 chars) | `My Fabric Mod` |
+| **Redirect URIs** | Callback URLs (exact match, one per environment) | `http://localhost:9876/callback` |
+| **Read-Only** | Whether the app only needs read access | `false` |
+
+The app ID cannot be changed after creation. See the full [Developer Documentation](https://dupedb.net/developers) for details on the OAuth flow, permissions, and token handling.
+
 ## Usage
 
 ### Unauthenticated (public endpoints only)
